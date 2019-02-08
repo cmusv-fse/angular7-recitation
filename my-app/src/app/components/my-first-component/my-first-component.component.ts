@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-my-first-component',
@@ -14,8 +14,14 @@ export class MyFirstComponentComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.authForm = this.fb.group({
-      email: [''],
-      password: [''],
+      email: ['', [
+        Validators.required,
+        Validators.email,
+      ]],
+      password: ['', [
+        Validators.required,
+        Validators.minLength(8),
+      ]],
     });
   }
 
